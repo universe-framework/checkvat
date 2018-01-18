@@ -24,7 +24,9 @@ public enum Country {
     DE("Germany", "\\d{5}"),
     DK("Denmark", "\\d{4}"),
     EE("Estonia", "\\d{5}"),
-    /** NOT ISO 3166 */
+    /**
+     * NOT ISO 3166
+     */
     EL("Greece", "\\d{3} ?\\d{2}"),
     ES("Spain", "\\d{5}"),
     FI("Finland", "\\d{5}"),
@@ -46,9 +48,13 @@ public enum Country {
     SK("Slovakia", "\\d{3} ?\\d{2}"),
     GB("United Kingdom", "GIR ?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|HD|HG|HP|HR|HS|HU|HX|IG|IM|IP|IV|JE|KA|KT|KW|KY|L|LA|LD|LE|LL|LN|LS|LU|M|ME|MK|ML|N|NE|NG|NN|NP|NR|NW|OL|OX|PA|PE|PH|PL|PO|PR|RG|RH|RM|S|SA|SE|SG|SK|SL|SM|SN|SO|SP|SR|SS|ST|SW|SY|TA|TD|TF|TN|TQ|TR|TS|TW|UB|W|WA|WC|WD|WF|WN|WR|WS|WV|YO|ZE)(\\d[\\dA-Z]? ?\\d[ABD-HJLN-UW-Z]{2}))|BFPO ?\\d{1,4}");
 
-    /** Country name */
+    /**
+     * Country name
+     */
     public final String name;
-    /** ZIP CODE pattern */
+    /**
+     * ZIP CODE pattern
+     */
     public final Pattern zipcode;
 
     /*
@@ -117,10 +123,10 @@ public enum Country {
             matcher.find();
 
             String street = address.substring(0, matcher.start());
-            String zipcode = address.substring(matcher.start(), matcher.end());
+            String zip = address.substring(matcher.start(), matcher.end());
             String city = address.substring(matcher.end());
 
-            return new CheckVatAddress(street, zipcode, city);
+            return new CheckVatAddress(street, zip, city);
 
         } catch (Exception e) {
             System.err.println(e);
