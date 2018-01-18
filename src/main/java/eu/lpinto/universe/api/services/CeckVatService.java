@@ -64,7 +64,11 @@ public class CeckVatService extends AbstractService {
 
         Country countryService = Country.getInstance(country);
         if (countryService != null) {
-            asyncResponse.resume(ok(countryService.query(vat)));
+            if (Country.PT.checkDigit(vat)) {
+                asyncResponse.resume(ok(countryService.query(vat)));
+            } else {
+                asyncResponse.resume(badRequest("Invalid Vat Number"));
+            }
         } else {
             asyncResponse.resume(badRequest("Unsupported country"));
         }
