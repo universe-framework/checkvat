@@ -28,7 +28,7 @@
     <repositories>
         <repository>
             <id>petuniversal-snapshots</id>
-            <url>http://dev.petuniversal.com/repository/libs-snapshot-local</url>
+            <url>https://dev.petuniversal.com/repository/libs-snapshot-local</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -39,7 +39,7 @@
         </repository>
         <repository>
             <id>petuniversal-release</id>
-            <url>http://dev.petuniversal.com/repository/libs-release-local</url>
+            <url>https://dev.petuniversal.com/repository/libs-release-local</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
