@@ -107,13 +107,17 @@ public enum Country {
                     new Holder(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar())),
                     valid, company, address);
 
-            return new CheckVatResult(valid.value, company.value, parse(address.value));
+            if (valid.value) {
+                return new CheckVatResult(valid.value, company.value, parse(address.value));
+
+            } else {
+                return null;
+            }
 
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
     public CheckVatAddress parse(String address) {
@@ -128,8 +132,8 @@ public enum Country {
 
             return new CheckVatAddress(street, zip, city);
 
-        } catch (Exception e) {
-            System.err.println(e);
+        } catch (IllegalStateException ex) {
+            System.err.println("Country matcher missing match for input: " + address);
         }
 
         return new CheckVatAddress(address);
