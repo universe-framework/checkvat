@@ -24,4 +24,30 @@
             <artifactId>javaee-web-api</artifactId>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>petuniversal-snapshots</id>
+            <url>https://dev.petuniversal.com/repository/libs-snapshot-local</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>petuniversal-release</id>
+            <url>https://dev.petuniversal.com/repository/libs-release-local</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
 </project>

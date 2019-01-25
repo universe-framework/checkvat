@@ -111,9 +111,8 @@ public enum Country {
 
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
     public CheckVatAddress parse(String address) {
@@ -128,8 +127,8 @@ public enum Country {
 
             return new CheckVatAddress(street, zip, city);
 
-        } catch (Exception e) {
-            System.err.println(e);
+        } catch (IllegalStateException ex) {
+            System.err.println("Country matcher missing match for input: " + address);
         }
 
         return new CheckVatAddress(address);
