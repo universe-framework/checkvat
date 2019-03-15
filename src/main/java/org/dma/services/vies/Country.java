@@ -41,7 +41,7 @@ public enum Country {
     MT("Malta", "[A-Z]{3} ?\\d{2,4}"),
     NL("Netherlands", "\\d{4} ?[A-Z]{2}"),
     PL("Poland", "\\d{2}-\\d{3}"),
-    PT("Portugal", "\\d{4}-\\d{3}"),
+    PT("Portugal", "\\d{4}(-\\d{3})?"),
     RO("Romania", "\\d{6}"),
     SE("Sweden", "\\d{3} ?\\d{2}"),
     SI("Slovenia", "\\d{4}"),
@@ -96,7 +96,7 @@ public enum Country {
 //            System.out.println("Querying VAT Information Exchange System (VIES) via web service...");
 //            System.out.println("Country: " + this);
 //            System.out.println("Vat Number: " + vatNumber);
-            Holder<Boolean> valid = new Holder(true);
+            Holder<Boolean> valid = new Holder(false);
             Holder<String> company = new Holder(new String());
             Holder<String> address = new Holder(new String());
 
@@ -107,12 +107,7 @@ public enum Country {
                     new Holder(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar())),
                     valid, company, address);
 
-            if (valid.value) {
-                return new CheckVatResult(valid.value, company.value, parse(address.value));
-
-            } else {
-                return null;
-            }
+            return valid.value ? new CheckVatResult(valid.value, company.value, parse(address.value)) : null;
 
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
