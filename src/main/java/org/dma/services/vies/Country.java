@@ -145,6 +145,8 @@ public enum Country {
                 return true;
             case PT:
                 return CheckDigit.PT(vatNumber);
+            case ES:
+                return CheckDigit.ES(vatNumber);
         }
     }
 
