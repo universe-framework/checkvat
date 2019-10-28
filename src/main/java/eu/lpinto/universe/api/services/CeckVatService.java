@@ -25,9 +25,9 @@ public class CeckVatService extends AbstractService {
     @GET
     @Asynchronous
     @Produces(value = MediaType.APPLICATION_JSON)
-    public final void find(@Suspended final AsyncResponse asyncResponse,
-                           final @Context UriInfo uriInfo,
-                           final @HeaderParam(value = "userID") Long userID) throws PreConditionException {
+    public void find(@Suspended final AsyncResponse asyncResponse,
+                     final @Context UriInfo uriInfo,
+                     final @HeaderParam(value = "userID") Long userID) throws PreConditionException {
         MultivaluedMap<String, String> queryParameters = uriInfo.getQueryParameters();
 
         List<String> countries = queryParameters.get("country");
