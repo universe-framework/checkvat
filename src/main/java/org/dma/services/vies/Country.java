@@ -125,6 +125,12 @@ public enum Country {
             String zip = address.substring(matcher.start(), matcher.end());
             String city = address.substring(matcher.end());
 
+            if (street != null) {
+                street = street.replaceAll("\\n", " ");
+                street = street.replaceAll(city, "");
+                street = street.trim();
+            }
+
             return new CheckVatAddress(street, zip, city);
 
         } catch (IllegalStateException ex) {
