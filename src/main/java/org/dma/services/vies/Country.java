@@ -96,21 +96,21 @@ public enum Country {
 //            System.out.println("Querying VAT Information Exchange System (VIES) via web service...");
 //            System.out.println("Country: " + this);
 //            System.out.println("Vat Number: " + vatNumber);
-            Holder<Boolean> valid = new Holder(false);
-            Holder<String> company = new Holder(new String());
-            Holder<String> address = new Holder(new String());
+            Holder<Boolean> valid = new Holder<>(false);
+            Holder<String> company = new Holder<>(new String());
+            Holder<String> address = new Holder<>(new String());
 
             CheckVatPortType servicePort = service.getCheckVatPort();
             servicePort.checkVat(
-                    new Holder(name()),
-                    new Holder(vatNumber),
-                    new Holder(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar())),
+                    new Holder<>(name()),
+                    new Holder<>(vatNumber),
+                    new Holder<>(DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar())),
                     valid, company, address);
 
             return valid.value ? new CheckVatResult(valid.value, company.value, parse(address.value)) : null;
 
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
+        } catch (DatatypeConfigurationException | RuntimeException ex) {
+            ex.printStackTrace();
             return null;
         }
     }
